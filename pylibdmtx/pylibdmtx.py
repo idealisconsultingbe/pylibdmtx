@@ -248,7 +248,7 @@ def _pixel_data(image):
 
 def decode(image, timeout=None, gap_size=None, shrink=1, shape=None,
            deviation=None, threshold=None, min_edge=None, max_edge=None,
-           corrections=None, max_count=None, return_vertices=False):
+           corrections=None, max_count=None, fnc1=None, return_vertices=False):
     """Decodes datamatrix barcodes in `image`.
 
     Args:
@@ -264,6 +264,9 @@ def decode(image, timeout=None, gap_size=None, shrink=1, shape=None,
         corrections (int):
         max_count (int): stop after reading this many barcodes. `None` to read
             as many as possible.
+        fnc1 (bytes); ASCII value of char to use as FNC1 or `None`.
+        For example `43` (char '+') for data: '+12345+67890'
+            If `None`, defaults to `DmtxUndefined`. Will do nothing if libdmtx < 0.7.5.
         return_vertices: If to return the coordinates of the four vertices of the datamatrix or just one + width/height
 
     Returns:
@@ -279,6 +282,8 @@ def decode(image, timeout=None, gap_size=None, shrink=1, shape=None,
 
     pixels, width, height, bpp = _pixel_data(image)
 
+    fnc1 = fnc1 or DmtxUndefined
+
     results = []
     with _image(
         cast(pixels, c_ubyte_p), width, height, _PACK_ORDER[bpp]
@@ -290,7 +295,8 @@ def decode(image, timeout=None, gap_size=None, shrink=1, shape=None,
                 (DmtxProperty.DmtxPropSquareDevn, deviation),
                 (DmtxProperty.DmtxPropEdgeThresh, threshold),
                 (DmtxProperty.DmtxPropEdgeMin, min_edge),
-                (DmtxProperty.DmtxPropEdgeMax, max_edge)
+                (DmtxProperty.DmtxPropEdgeMax, max_edge),
+                (DmtxProperty.DmtxPropFnc1, fnc1)
             ]
 
             # Set only those properties with a non-None value
