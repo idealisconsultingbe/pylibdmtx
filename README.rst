@@ -1,55 +1,19 @@
-pylibdmtx
+Idealis Consulting Temporary pylibdmtx
 =========
-
-.. image:: https://img.shields.io/badge/python-2.7%2C%203.5%2C%203.6%2C%203.7%2C%203.8%2C%203.9%2C%203.10-blue.svg
-    :target: https://github.com/NaturalHistoryMuseum/pylibdmtx
-
-.. image:: https://badge.fury.io/py/pylibdmtx.svg
-    :target: https://pypi.python.org/pypi/pylibdmtx
-
-.. image:: https://img.shields.io/github/actions/workflow/status/NaturalHistoryMuseum/pylibdmtx/test.yml?label=tests
-    :target: https://github.com/NaturalHistoryMuseum/pylibdmtx/actions/workflows/test.yml
-
-.. image:: https://coveralls.io/repos/github/NaturalHistoryMuseum/pylibdmtx/badge.svg?branch=master
-    :target: https://coveralls.io/github/NaturalHistoryMuseum/pylibdmtx?branch=master
 
 Read and write Data Matrix barcodes from Python 2 and 3 using the
 `libdmtx <http://libdmtx.sourceforge.net/>`__ library.
 
--  Pure python
--  Works with PIL / Pillow images, OpenCV / imageio / numpy ``ndarray``\ s, and raw bytes
--  Decodes locations of barcodes
--  No dependencies, other than the libdmtx library itself
--  Tested on Python 2.7, and Python 3.5 to 3.10
-
-The older
-`pydmtx <https://sourceforge.net/p/libdmtx/dmtx-wrappers/ci/master/tree/python/>`__
-package is stuck in Python 2.x-land.
+-  Temporary Fork of the original `pylibdmtx <https://github.com/NaturalHistoryMuseum/pylibdmtx/>`__ for Idealis Consulting
+-  Could be deleted once this `PR <https://github.com/NaturalHistoryMuseum/pylibdmtx/pull/93>`__ is merged into the original repository
 
 Installation
 ------------
 
-The ``libdmtx`` ``DLL``\ s are included with the Windows Python wheels.
-On other operating systems, you will need to install the ``libdmtx`` shared
-library.
-
-Mac OS X:
 
 ::
 
-   brew install libdmtx
-
-Linux:
-
-::
-
-   sudo apt-get install libdmtx0a
-
-The PyPI package is currently out-of-date; to install the latest version, use:
-
-::
-
-    pip install git+https://github.com/NaturalHistoryMuseum/pylibdmtx.git
+    pip install git+https://github.com/idealisconsultingbe/pylibdmtx.git
 
 To use the
 ``read_datamatrix`` and ``write_datamatrix`` command-line scripts, you will also need to install Pillow >= 3.2.0:
@@ -57,13 +21,6 @@ To use the
 ::
 
     pip install "Pillow>=3.2.0"
-
-If you want to install the outdated package from PyPI:
-
-::
-
-   pip install pylibdmtx
-   pip install pylibdmtx[scripts]
 
 Example usage
 -------------
